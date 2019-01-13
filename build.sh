@@ -33,7 +33,7 @@ apt-get clean -y
 rm -rf /var/lib/apt/lists/*
 rm -rf /usr/share/doc/*
 rm -rf /usr/share/doc-gen/*
-rm -fr /usr/share/man/*
+rm -rf /usr/share/man/*
 
 exit 0
 
