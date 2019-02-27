@@ -107,7 +107,7 @@ processArg () {
     echoerr -1 "Missing environment variable GOPATH. Set to ${PWD}.\n"
     export GOPATH="${PWD}"
 }
-dockerCmd="${dockerCmd} -v${GOPATH}:/go"
+dockerCmd="${dockerCmd} --mount type=bind,source=${GOPATH},target=/go"
 # remove the GOPATH prefix ...
 w="${PWD##${GOPATH}}"
 [ "${PWD}" = "${w}" ] && {
