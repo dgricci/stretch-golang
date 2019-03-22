@@ -2,9 +2,12 @@
 
 ## Dockerfile for golang environment
 
-# install
-export DEBIAN_FRONTEND=noninteractive
-apt-get -qy update
+# install compiler environment (See dgricci/compilers) :
+01-install.sh
+
+# Exit on any non-zero status.
+trap 'exit' ERR
+set -E
 
 ## install golang, then the sudo version in ... golang !
 ## one could have download the source code and compile to go source !-)

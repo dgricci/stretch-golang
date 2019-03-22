@@ -1,6 +1,6 @@
 % Environnement GoLang  
 % Didier Richard  
-% 2019/02/27
+% 2019/03/22
 
 ---
 
@@ -8,6 +8,7 @@ revision:
     - 1.0.0 : 2018/08/30 : golang 1.11  
     - 1.0.1 : 2019/01/13 : golang 1.11.4  
     - 1.1.0 : 2019/02/27 : golang 1.12  
+    - 1.1.1 : 2019/02/27 : golang 1.12.1  
 
 ---
 
@@ -32,9 +33,9 @@ $ docker tag dgricci/golang:$(< VERSION) dgricci/golang:latest
 
 ```bash
 $ docker build \
-    --build-arg GOLANG_VERSION=1.12 \
-    --build-arg GOLANG_DOWNLOAD_URL=https://golang.org/dl/go1.12.linux-amd64.tar.gz \
-    --build-arg GOLANG_DOWNLOAD_SHA256=750a07fef8579ae4839458701f4df690e0b20b8bcce33b437e4df89c451b6f13 \
+    --build-arg GOLANG_VERSION=1.12.1 \
+    --build-arg GOLANG_DOWNLOAD_URL=https://golang.org/dl/go1.12.1.linux-amd64.tar.gz \
+    --build-arg GOLANG_DOWNLOAD_SHA256=2a3fdabf665496a0db5f41ec6af7a9b15a49fbe71a85a50ca38b1f13a103aeec \
     -t dgricci/golang:$(< VERSION) .
 $ docker tag dgricci/golang:$(< VERSION) dgricci/golang:latest
 ```
@@ -45,7 +46,7 @@ See `dgricci/stretch` README for handling permissions with dockers volumes.
 
 ```bash
 $ docker run -it --rm dgricci/golang:$(< VERSION)
-go version go1.12 linux/amd64
+go version go1.12.1 linux/amd64
 ```
 
 ## An example ##
@@ -120,7 +121,7 @@ $ ln -s go.sh golint
 $ ln -s go.sh dep
 $ cd $GOPATH
 $ go version
-go version go1.12 linux/amd64
+go version go1.12.1 linux/amd64
 ```
 
 One can then get the golang standard library documentation locally :
