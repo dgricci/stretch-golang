@@ -88,7 +88,7 @@ EOF
 # Process argument
 #
 processArg () {
-    arg="$1"
+    local arg="$1"
     [ "${theShell}" = "godoc" ] && {
         [ $(echo "$arg" | grep -c -e '^-http=') -eq 1 ] && {
             dockerSpecialOpts="--detach=true"
@@ -98,6 +98,16 @@ processArg () {
         }
     }
     cmdToExec="${cmdToExec} $arg"
+}
+#
+# Add to env for go if needed
+#
+addToEnv () {
+    local VarName="$1"
+    declare -n VarValue="$1"
+    [ ! -z "${VarValue}" ] && {
+        dockerCmd="${dockerCmd} -e ${VarName}=${VarValue}"
+    }
 }
 #
 # main
@@ -115,12 +125,13 @@ w="${PWD##${GOPATH}}"
     echoerr -2 "The current directory is not a sub-directory of ${GOPATH}. Some commands may failed in that case.\n"
     w=""
 }
-[ ! -z "${http_proxy}" ] && {
-    dockerCmd="${dockerCmd} -e http_proxy=${http_proxy}"
-}
-[ ! -z "${https_proxy}" ] && {
-    dockerCmd="${dockerCmd} -e https_proxy=${https_proxy}"
-}
+addToEnv "http_proxy"
+addToEnv "https_proxy"
+addToEnv "GOARCH"
+addToEnv "GOOS"
+addToEnv "PKG_CONFIG_PATH"
+addToEnv "LD_LIBRARY_PATH"
+addToEnv "PROJ_LIB" # FIXME
 [ "${theSell}" = "dep" ] && {
     dockerCmd="${dockerCmd} -it"
 }
