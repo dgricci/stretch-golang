@@ -3,7 +3,7 @@
 # Exécute le container docker dgricci/golang
 #
 # Constantes :
-VERSION="0.13.0"
+VERSION="1.15.3"
 # Variables globales :
 #readonly -A commands=(
 #[go]=""
